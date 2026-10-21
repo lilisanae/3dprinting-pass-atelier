@@ -1,0 +1,23 @@
+/assets/template.json
+  Cache-Control: public, max-age=3600, stale-while-revalidate=86400
+
+/workshop-cache-worker.js
+  Cache-Control: no-cache, must-revalidate
+
+/pass/workshop-cache-worker.js
+  Cache-Control: no-cache, must-revalidate
+
+/badge/workshop-cache-worker.js
+  Cache-Control: no-cache, must-revalidate
+
+/atelier/pass/workshop-cache-worker.js
+  Cache-Control: no-cache, must-revalidate
+
+/atelier/badge/workshop-cache-worker.js
+  Cache-Control: no-cache, must-revalidate
+
+/
+  Cache-Control: public, max-age=0, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate

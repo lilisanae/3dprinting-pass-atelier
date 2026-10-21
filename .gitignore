@@ -1,0 +1,14 @@
+node_modules/
+dist/
+.qa/
+.wrangler/
+output/
+*.log
+*.tsbuildinfo
+.env
+.env.*
+!.env.example
+
+release/
+.artifacts/
+*.local

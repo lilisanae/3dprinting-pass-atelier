@@ -1,0 +1,10 @@
+{
+  "id": "author-a1-centered-v1",
+  "source": {
+    "file": "我的第一张通行证 (4).3mf",
+    "sha256": "c1f7e91c17cbfbdf5ab93e323c7fbfed4cfbc8c8a578855dbfd89132f1fe581e"
+  },
+  "centerMm": [128, 128],
+  "referenceBuildTranslationMm": [102.999979, 78, 0],
+  "referenceLocalBoundsMm": [0, 0, 0, 50.0000009, 100, 3.708908085]
+}

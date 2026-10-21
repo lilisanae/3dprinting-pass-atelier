@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#fff8f3" />
+    <script>
+      try {
+        var t = localStorage.getItem('pass-atelier-ui-theme');
+        if (t !== 'light' && t !== 'dark')
+          t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        document.documentElement.dataset.theme = t;
+        if (t === 'dark')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1a1619');
+      } catch (e) {}
+    </script>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <meta name="description" content="把喜欢，做成能带走的形状。自由设计你的多色 3D 打印通行证。" />
+    <title>通行证工坊 · PASS ATELIER</title>
+    <script>
+      // Start the static-asset cache before the app module loads. The scope is
+      // derived from the actual page prefix, so /pass/ never controls the site root.
+      (function () {
+        if (!('serviceWorker' in navigator) || !window.isSecureContext) return;
+        var match = location.pathname.match(/^\/(?:atelier\/)?(?:pass|badge)(?:\/|$)/);
+        var prefix;
+        if (match) prefix = match[0].slice(-1) === '/' ? match[0] : match[0] + '/';
+        else if (location.pathname === '/' || location.pathname === '/index.html') prefix = '/';
+        else return;
+        try {
+          var registration = navigator.serviceWorker.register(
+            prefix + 'workshop-cache-worker.js',
+            { scope: prefix, updateViaCache: 'none' },
+          );
+          window.__workshopCacheRegistration = registration;
+          window.__workshopCacheFailure = new Promise(function (resolve) {
+            registration.then(function () {}, function () {
+              resolve();
+            });
+          });
+        } catch (error) {
+          window.__workshopCacheFailure = Promise.resolve();
+        }
+      })();
+    </script>
+    <script>
+      if (/^\/(?:atelier\/)?badge(?:\/|$)/.test(location.pathname) || new URLSearchParams(location.search).get('workshop') === 'badge') {
+        document.documentElement.dataset.workshop = 'badge';
+        document.title = '徽章工坊 · BADGE ATELIER';
+        document.querySelector('meta[name="description"]').content = '自由设计徽章底板、轮廓、图案与背面安装槽，预览并导出多色 3D 打印模型。';
+      }
+    </script>
+    <style>.badge-boot{display:none}html[data-workshop="badge"] .pass-boot{display:none}html[data-workshop="badge"] .badge-boot{display:inline}</style>
+  </head>
+  <body>
+    <div id="root">
+      <div
+        style="
+          min-height: 100vh;
+          display: grid;
+          place-content: center;
+          text-align: center;
+          background: #fff8f3;
+          color: #34313a;
+          font-family: system-ui, sans-serif;
+        "
+      >
+        <div style="font-size: 48px"><span class="pass-boot">🎫</span><span class="badge-boot">✿</span></div>
+        <h1 style="font-size: 24px"><span class="pass-boot">通行证工坊</span><span class="badge-boot">徽章工坊</span></h1>
+        <p>正在铺开你的工作台…</p>
+      </div>
+    </div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
