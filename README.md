@@ -1,16 +1,16 @@
 # 通行证工坊 · PASS ATELIER
 
-[![CI](https://github.com/lilisanae/3dprinting-pass-atelier/actions/workflows/ci.yml/badge.svg)](https://github.com/lilisanae/3dprinting-pass-atelier/actions/workflows/ci.yml)
+[![CI](https://github.com/lilisanae/sanae-pass-atelier/actions/workflows/ci.yml/badge.svg)](https://github.com/lilisanae/sanae-pass-atelier/actions/workflows/ci.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-f57cab.svg)](LICENSE)
-[![Version](https://img.shields.io/badge/version-0.7.0-9ac9b0.svg)](https://github.com/lilisanae/3dprinting-pass-atelier/releases)
+[![Version](https://img.shields.io/badge/version-0.7.1-9ac9b0.svg)](https://github.com/lilisanae/sanae-pass-atelier/releases)
 
-![通行证工坊：把喜欢，做成能带走的形状](docs/assets/cover.svg)
+![百合咲案例：工坊内真实生成的三维预览](docs/assets/yurisaki-3d.jpg)
 
 **通行证工坊**是一个在浏览器里制作多色 3D 打印通行证和徽章的小工具。放入图案、写上文字、调整正背面和层高，核对三维效果后，就能下载模型，交给切片器继续打印。
 
 不用先学会建模，也不用注册账号。图像处理、实体生成和作品保存主要在你的设备上完成。
 
-**[打开通行证工坊](https://beatsanae.cn/pass/)** · **[打开徽章工坊](https://beatsanae.cn/badge/)** · **[下载发行包](https://github.com/lilisanae/3dprinting-pass-atelier/releases)** · **[使用说明](docs/guide.md)**
+**[打开通行证工坊](https://beatsanae.cn/pass/)** · **[打开徽章工坊](https://beatsanae.cn/badge/)** · **[下载发行包](https://github.com/lilisanae/sanae-pass-atelier/releases)** · **[使用说明](docs/guide.md)**
 
 > 把喜欢，做成能带走的形状。
 
@@ -45,19 +45,37 @@ flowchart TD
 
 三维预览使用实际生成的网格；生成未完成、模型过期或存在错误时会阻止导出。提示可以辅助发现问题，不能替代切片和试打。
 
-## 图文一览
+## 发行案例：百合咲
 
-### 图案与内外描边
+这次用一份完整作品展示工坊的操作：50 × 100 mm 通行证，四种配色、六个集合，包含正反面图案、分色路径、剪影、文字和裁切设置。所有截图都来自工坊实际打开这份项目后的画面。
 
-![桌面编辑：图层、画布与轮廓属性](docs/assets/editor.png)
+**[下载案例项目](https://github.com/lilisanae/sanae-pass-atelier/releases/download/v0.7.1/yurisaki.pass.json)** · **[查看案例说明](examples/README.md)** · [仓库中的原始项目](examples/yurisaki.pass.json)
 
-左侧整理图层，中间排版，右侧直接调整尺寸、颜色、填充和描边位置。修改后可以撤销、重做，也可以切换三维查看实际效果。
+下载后在工坊点「打开」，选择 `yurisaki.pass.json` 即可继续编辑。静态发行包和源码包也都附带 `examples/` 目录；案例作为独立可编辑文件提供，不会覆盖浏览器里已有作品。
+
+### 正面：图案、剪影与叠层
+
+![百合咲正面编辑：图案、集合和底板参数](docs/assets/yurisaki-front.jpg)
+
+正面以浅蓝、白、黑分色，在集合中组织人物图案、剪影和背景。左侧选择集合，右侧查看当前对象的尺寸、颜色和参数；切换三维后可以核对真实厚度。
+
+### 背面：独立排版与齐平嵌色
+
+![百合咲背面编辑：独立背面图案与嵌色](docs/assets/yurisaki-back.jpg)
+
+背面有独立集合，图案按本案例的 0.40 mm 深度嵌入底板。正背面颜色可以分别设置，板子总厚度保持项目原有值。
+
+### 三维：查看实际生成的模型
+
+文章开头的三维图和二维编辑使用同一份项目。当前模型约 42,200 个三角面，实际使用浅蓝、白、黑三种材料；调色盘里保留了第四种备用色。
+
+案例保留原设计与打印提示，包括未绑定目标的切割工具和小于 0.2 mm 的轮廓细节。它用于演示与继续编辑，未宣称完成本次切片或实物试打；详见[案例说明](examples/README.md#打印前核对)。
 
 ### 手机上也能继续做
 
-<img src="docs/assets/mobile.png" alt="手机编辑界面：常驻画布与底部面板" width="390">
+<img src="docs/assets/yurisaki-mobile.jpg" alt="手机上的百合咲案例，画布和底部操作栏" width="390">
 
-手机保留画布和常用操作，图层与参数从底部面板打开。截图为 v0.7.0 编辑功能的隔离演示作品。
+手机保留同一份图案与编辑方式，图层和参数从底部面板打开。上图为 390 px 浏览器手机视图截图，不是实机照片。
 
 ## 快速开始
 
@@ -91,8 +109,8 @@ flowchart TD
 环境使用仓库 `.node-version` 指定的 Node.js 24，以及 `package.json` 指定的 pnpm 11.25.0。版本锁定和依赖锁文件随源码提供。
 
 ```sh
-git clone https://github.com/lilisanae/3dprinting-pass-atelier.git
-cd 3dprinting-pass-atelier
+git clone https://github.com/lilisanae/sanae-pass-atelier.git
+cd sanae-pass-atelier
 pnpm install --frozen-lockfile
 pnpm dev
 ```
@@ -136,7 +154,7 @@ pnpm package    # 生成静态包与源码包
 
 ## 反馈与参与
 
-欢迎在 [Issues](https://github.com/lilisanae/3dprinting-pass-atelier/issues) 提交问题或建议。说明浏览器、手机/电脑、复现步骤，以及期望和实际结果；需要提供项目文件时，请先移除私人内容。
+欢迎在 [Issues](https://github.com/lilisanae/sanae-pass-atelier/issues) 提交问题或建议。说明浏览器、手机/电脑、复现步骤，以及期望和实际结果；需要提供项目文件时，请先移除私人内容。
 
 贡献代码前可看 [CONTRIBUTING.md](CONTRIBUTING.md)。请保留旧项目兼容性；涉及几何、保存或导出时，附上相应检查结果。
 

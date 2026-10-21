@@ -18,6 +18,7 @@ function collect(dir, prefix = '') {
   return files;
 }
 const web = collect('dist');
+Object.assign(web, collect('examples', 'examples/'));
 web['preview.cjs'] = read('scripts/preview.cjs');
 web['start-preview.cmd'] = read('start-preview.cmd');
 web['LICENSE'] = read('LICENSE');
@@ -53,6 +54,15 @@ for (const [kind, files] of [
     sha256: createHash('sha256').update(bytes).digest('hex'),
   });
 }
+const exampleName = 'yurisaki.pass.json';
+const exampleBytes = read('examples/' + exampleName);
+writeFileSync(join(output, exampleName), exampleBytes);
+manifest.push({
+  file: exampleName,
+  bytes: exampleBytes.length,
+  entries: 1,
+  sha256: createHash('sha256').update(exampleBytes).digest('hex'),
+});
 writeFileSync(
   join(output, 'checksums.sha256'),
   manifest.map((x) => x.sha256 + '  ' + x.file).join('\n') + '\n',
